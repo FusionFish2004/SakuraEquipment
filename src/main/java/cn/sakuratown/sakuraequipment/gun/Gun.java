@@ -1,7 +1,7 @@
 package cn.sakuratown.sakuraequipment.gun;
 
 import cn.sakuratown.sakuraequipment.items.Item;
-import cn.sakuratown.sakuraequipment.event.GunShootEvent;
+import cn.sakuratown.sakuraequipment.event.GunEvent;
 import cn.sakuratown.sakuraequipment.items.ItemBuilder;
 import cn.sakuratown.sakuraequipment.utils.MessageUtil;
 import de.tr7zw.nbtapi.NBTCompound;
@@ -11,6 +11,8 @@ import org.bukkit.inventory.ItemStack;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
+
+import static cn.sakuratown.sakuraequipment.utils.KeyUtil.BULLET_AMOUNT;
 
 //TODO 逻辑: 玩家右键 -> 枪开枪(生成对应子弹) -> 触发开枪事件(处理 itemstack) -> 飞行
 // 枪械类里面有个生成子弹的方法，每个附魔都会调用这个方法来设置子弹属性
@@ -27,7 +29,7 @@ public abstract class Gun extends Item {
     public final double criticalRate;
     public final double criticalMultiply;
 
-    public Consumer<GunShootEvent> shootEvent;
+    public Consumer<GunEvent> shootEvent;
 
     protected Gun(Builder<?> builder) {
         super(builder);
@@ -75,7 +77,7 @@ public abstract class Gun extends Item {
         lore.add("&6换弹速度: &e&l" + MessageUtil.formatNumber(20.0 / reloadSpeed));
         lore.add("&6暴击倍率: &e&l" + criticalMultiply + "x");
 
-        return new ItemBuilder(itemStack).lore(lore).persistentDataContainer("BulletAmount", magazineSize).build();
+        return new ItemBuilder(itemStack).lore(lore).persistentDataContainer(BULLET_AMOUNT.getKey(), magazineSize).build();
     }
 
     @Override

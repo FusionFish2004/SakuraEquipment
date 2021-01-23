@@ -2,7 +2,7 @@ package cn.sakuratown.sakuraequipment.listeners;
 
 import cn.sakuratown.sakuraequipment.Main;
 import cn.sakuratown.sakuraequipment.gun.BulletRunnable;
-import cn.sakuratown.sakuraequipment.event.GunShootEvent;
+import cn.sakuratown.sakuraequipment.event.GunEvent;
 import cn.sakuratown.sakuraequipment.gun.Gun;
 import cn.sakuratown.sakuraequipment.utils.MessageUtil;
 import org.bukkit.entity.Player;
@@ -18,7 +18,7 @@ import static cn.sakuratown.sakuraequipment.utils.KeyUtil.BULLET_AMOUNT;
 public class GunShootListener implements Listener {
 
     @EventHandler
-    public void onGunShootEvent(GunShootEvent event) {
+    public void onGunShootEvent(GunEvent event) {
 
         Gun gun = event.getGun();
         Player player = event.getShooter();

@@ -1,6 +1,7 @@
 package cn.sakuratown.sakuraequipment;
 
 import cn.sakuratown.sakuraequipment.items.Item;
+import cn.sakuratown.sakuraequipment.listeners.ArmorEquipListener;
 import com.comphenix.protocol.PacketType;
 import com.comphenix.protocol.ProtocolLibrary;
 import com.comphenix.protocol.ProtocolManager;
@@ -40,6 +41,7 @@ public class Main extends JavaPlugin {
         };
         MessageUtil.sendConsole(message);
 
+        getServer().getPluginManager().registerEvents(new ArmorEquipListener(),this);
         getServer().getPluginManager().registerEvents(new PlayerInteractListener(), this);
         getServer().getPluginManager().registerEvents(new GunShootListener(), this);
     }
@@ -47,7 +49,10 @@ public class Main extends JavaPlugin {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
-        Player player = Bukkit.getPlayer("EnTIv");
+        if (!(sender instanceof Player)) return false;
+        Player player = (Player) sender;
+        if (!player.isOp()) return false;
+
         吸血鬼节杖 testGun = 吸血鬼节杖.getInstance();
 
         player.getInventory().addItem(testGun.getItemStack());

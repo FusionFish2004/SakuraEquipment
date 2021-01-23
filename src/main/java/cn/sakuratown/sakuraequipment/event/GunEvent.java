@@ -6,13 +6,13 @@ import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 import org.bukkit.inventory.ItemStack;
 
-public class GunShootEvent extends ItemInteractEvent{
+public class GunEvent extends ItemInteractEvent{
 
     private final ItemStack itemStack;
     private final Gun gun;
     private final Player shooter;
 
-    public GunShootEvent(ItemStack itemStack, Gun gun, Player shooter) {
+    public GunEvent(ItemStack itemStack, Gun gun, Player shooter) {
         this.gun = gun;
         this.itemStack = itemStack;
         this.shooter = shooter;

@@ -9,7 +9,7 @@ public class EventFactory {
     public static ItemInteractEvent getEvent(Item item, Player player, ItemStack itemStack){
         switch (item.type){
             case "Gun":
-                return new GunShootEvent(itemStack, (Gun) item, player);
+                return new GunEvent(itemStack, (Gun) item, player);
         }
         return null;
     }
